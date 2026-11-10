@@ -254,6 +254,14 @@
   sqlite3_finalize
   [::mem/pointer] ::mem/int)
 
+(defcfn next-stmt
+  "sqlite3_next_stmt"
+  [::mem/pointer ::mem/pointer] ::mem/pointer
+  sqlite3-next-stmt-native
+  [pdb stmt]
+  (let [next-stmt (sqlite3-next-stmt-native pdb stmt)]
+    (when-not (mem/null? next-stmt) next-stmt)))
+
 (defcfn create-function-v2
   sqlite3_create_function_v2
   [::mem/pointer  ;; db
